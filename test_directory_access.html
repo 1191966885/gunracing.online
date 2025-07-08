@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试目录访问</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .test-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .test-links a {
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            text-decoration: none;
+            color: #333;
+            border-radius: 4px;
+        }
+        .test-links a:hover {
+            background-color: #ddd;
+        }
+        h2 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>测试目录访问</h1>
+    
+    <h2>1. 测试相对路径 - 使用 "../category/"</h2>
+    <div class="test-links">
+        <a href="games/action/">Action (../action/)</a>
+        <a href="games/racing/">Racing (../racing/)</a>
+        <a href="games/shooting/">Shooting (../shooting/)</a>
+        <a href="games/puzzle/">Puzzle (../puzzle/)</a>
+        <a href="games/sports/">Sports (../sports/)</a>
+        <a href="games/casual/">Casual (../casual/)</a>
+        <a href="games/.io/">.IO Games (../.io/)</a>
+        <a href="games/clicker/">Clicker (../clicker/)</a>
+        <a href="games/adventure/">Adventure (../adventure/)</a>
+        <a href="games/driving/">Driving (../driving/)</a>
+        <a href="games/beauty/">Beauty (../beauty/)</a>
+        <a href="games/other/">Other (../other/)</a>
+    </div>
+    
+    <h2>2. 测试绝对路径 - 使用 "/games/category/"</h2>
+    <div class="test-links">
+        <a href="/games/action/">Action (/games/action/)</a>
+        <a href="/games/racing/">Racing (/games/racing/)</a>
+        <a href="/games/shooting/">Shooting (/games/shooting/)</a>
+        <a href="/games/puzzle/">Puzzle (/games/puzzle/)</a>
+        <a href="/games/sports/">Sports (/games/sports/)</a>
+        <a href="/games/casual/">Casual (/games/casual/)</a>
+        <a href="/games/.io/">.IO Games (/games/.io/)</a>
+        <a href="/games/clicker/">Clicker (/games/clicker/)</a>
+        <a href="/games/adventure/">Adventure (/games/adventure/)</a>
+        <a href="/games/driving/">Driving (/games/driving/)</a>
+        <a href="/games/beauty/">Beauty (/games/beauty/)</a>
+        <a href="/games/other/">Other (/games/other/)</a>
+    </div>
+    
+    <h2>3. 测试明确的索引文件 - 使用 "/games/category/index.html"</h2>
+    <div class="test-links">
+        <a href="/games/action/index.html">Action (/games/action/index.html)</a>
+        <a href="/games/racing/index.html">Racing (/games/racing/index.html)</a>
+        <a href="/games/shooting/index.html">Shooting (/games/shooting/index.html)</a>
+        <a href="/games/puzzle/index.html">Puzzle (/games/puzzle/index.html)</a>
+        <a href="/games/sports/index.html">Sports (/games/sports/index.html)</a>
+        <a href="/games/casual/index.html">Casual (/games/casual/index.html)</a>
+        <a href="/games/.io/index.html">.IO Games (/games/.io/index.html)</a>
+        <a href="/games/clicker/index.html">Clicker (/games/clicker/index.html)</a>
+        <a href="/games/adventure/index.html">Adventure (/games/adventure/index.html)</a>
+        <a href="/games/driving/index.html">Driving (/games/driving/index.html)</a>
+        <a href="/games/beauty/index.html">Beauty (/games/beauty/index.html)</a>
+        <a href="/games/other/index.html">Other (/games/other/index.html)</a>
+    </div>
+    
+    <h2>4. 测试相对路径 - 使用 "games/category/index.html"</h2>
+    <div class="test-links">
+        <a href="games/action/index.html">Action (games/action/index.html)</a>
+        <a href="games/racing/index.html">Racing (games/racing/index.html)</a>
+        <a href="games/shooting/index.html">Shooting (games/shooting/index.html)</a>
+        <a href="games/puzzle/index.html">Puzzle (games/puzzle/index.html)</a>
+        <a href="games/sports/index.html">Sports (games/sports/index.html)</a>
+        <a href="games/casual/index.html">Casual (games/casual/index.html)</a>
+        <a href="games/.io/index.html">.IO Games (games/.io/index.html)</a>
+        <a href="games/clicker/index.html">Clicker (games/clicker/index.html)</a>
+        <a href="games/adventure/index.html">Adventure (games/adventure/index.html)</a>
+        <a href="games/driving/index.html">Driving (games/driving/index.html)</a>
+        <a href="games/beauty/index.html">Beauty (games/beauty/index.html)</a>
+        <a href="games/other/index.html">Other (games/other/index.html)</a>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏图片测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .image-test {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        .image-container {
+            max-width: 200px;
+            max-height: 150px;
+            border: 1px solid #eee;
+            margin-top: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>游戏图片加载测试</h1>
+    <div id="results"></div>
+    
+    <script>
+        const resultsElem = document.getElementById('results');
+        
+        // 加载游戏数据
+        fetch('game_data.json')
+            .then(response => response.json())
+            .then(games => {
+                // 测试前5个游戏的图片
+                const testGames = games.slice(0, 5);
+                testGames.forEach(game => {
+                    testImage(game);
+                });
+            })
+            .catch(err => {
+                resultsElem.innerHTML += `<div class="error">加载游戏数据失败: ${err.message}</div>`;
+            });
+        
+        // 测试图片是否能加载
+        function testImage(game) {
+            const testDiv = document.createElement('div');
+            testDiv.className = 'image-test';
+            
+            const title = document.createElement('h3');
+            title.textContent = game.title;
+            testDiv.appendChild(title);
+            
+            const imgUrl = document.createElement('p');
+            imgUrl.textContent = `图片URL: ${game.thumb || '无图片URL'}`;
+            testDiv.appendChild(imgUrl);
+            
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'image-container';
+            
+            const img = document.createElement('img');
+            img.src = game.thumb || 'images/placeholder.png';
+            img.alt = game.title;
+            
+            // 添加加载事件监听
+            img.onload = () => {
+                const status = document.createElement('p');
+                status.className = 'success';
+                status.textContent = '✓ 图片加载成功';
+                testDiv.appendChild(status);
+            };
+            
+            img.onerror = () => {
+                const status = document.createElement('p');
+                status.className = 'error';
+                status.textContent = '✗ 图片加载失败';
+                testDiv.appendChild(status);
+                
+                // 尝试加载占位图片
+                img.src = 'images/placeholder.png';
+            };
+            
+            imgContainer.appendChild(img);
+            testDiv.appendChild(imgContainer);
+            resultsElem.appendChild(testDiv);
+        }
+    </script>
+</body>
+</html> 

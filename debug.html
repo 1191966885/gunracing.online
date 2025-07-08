@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏数据调试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        pre {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow: auto;
+            max-height: 400px;
+        }
+        .status {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>游戏数据调试页面</h1>
+    <div id="status" class="status"></div>
+    <h2>数据预览（前5项）：</h2>
+    <pre id="data-preview"></pre>
+    
+    <script>
+        const statusElem = document.getElementById('status');
+        const previewElem = document.getElementById('data-preview');
+        
+        // 加载游戏数据
+        fetch('game_data.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP错误! 状态码: ${response.status}`);
+                }
+                return response.text(); // 先作为文本获取
+            })
+            .then(text => {
+                try {
+                    console.log("原始数据长度:", text.length);
+                    // 尝试解析JSON
+                    const data = JSON.parse(text);
+                    statusElem.className = 'status success';
+                    statusElem.textContent = `✓ 成功加载游戏数据，共${data.length}项`;
+                    
+                    // 显示前5项数据
+                    const preview = data.slice(0, 5);
+                    previewElem.textContent = JSON.stringify(preview, null, 2);
+                } catch (e) {
+                    statusElem.className = 'status error';
+                    statusElem.textContent = `✗ JSON解析错误: ${e.message}`;
+                    
+                    // 显示一部分原始文本以便调试
+                    const firstChars = text.substring(0, 500);
+                    previewElem.textContent = firstChars + '...(省略)';
+                }
+            })
+            .catch(err => {
+                statusElem.className = 'status error';
+                statusElem.textContent = `✗ 加载失败: ${err.message}`;
+                console.error('游戏数据加载错误:', err);
+            });
+    </script>
+</body>
+</html> 
